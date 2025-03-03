@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         Discord Message ID Extractor
 // @namespace    http://tampermonkey.net/
-// @version      2.1
+// @version      2.5
 // @description  Extract Message IDs from Discord messages and display them
-// @author       Your Name
+// @author       AARR
 // @match        https://discord.com/*
 // @grant        none
 // @license      You can modify as long as you credit me
+// @downloadURL https://update.greasyfork.org/scripts/526248/Discord%20Message%20ID%20Extractor.user.js
+// @updateURL https://update.greasyfork.org/scripts/526248/Discord%20Message%20ID%20Extractor.meta.js
 // ==/UserScript==
 (function() {
     'use strict';
@@ -294,7 +296,7 @@
     }
 
     function saveMessageIDsToFile() {
-        const messageIds = Array.from(messageIdList.children).map(li => li.textContent).join('\n');
+        const messageIds = Array.from(messageIdList.children).map(li => li.textContent.replace(/-/g, ',')).join('\n');
         const blob = new Blob([messageIds], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -336,7 +338,7 @@
     toggleImage.style.cursor = 'pointer';
     toggleImage.style.zIndex = '1001';
     toggleImage.style.left = '75px';
-    toggleImage.style.bottom = '125px';
+    toggleImage.style.bottom = '123px';
     document.body.appendChild(toggleImage);
 
     function adjustToggleImagePosition() {
