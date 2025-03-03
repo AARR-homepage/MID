@@ -278,15 +278,13 @@
         });
     }
 
-      function copyMessageIDsToClipboard() {
-
+    function copyMessageIDsToClipboard() {
         const messageIds = Array.from(messageIdList.children).map(li => li.textContent.replace(/-/g, ',')).join('\n');
         navigator.clipboard.writeText(messageIds).then(() => {
         }).catch(err => {
             console.error('Failed to copy message IDs: ', err);
         });
     }
-
 
     function resetMessageIDList() {
         messageIdList.innerHTML = '';
@@ -337,15 +335,13 @@
     toggleImage.style.height = '30px';
     toggleImage.style.cursor = 'pointer';
     toggleImage.style.zIndex = '1001';
+    toggleImage.style.left = '75px';
+    toggleImage.style.bottom = '125px';
     document.body.appendChild(toggleImage);
 
     function adjustToggleImagePosition() {
-        toggleImage.style.top = (window.innerHeight - 154) + 'px';
-        toggleImage.style.left = (window.innerWidth - 1016) + 'px';
-    }
 
-    window.addEventListener('resize', adjustToggleImagePosition);
-    adjustToggleImagePosition();
+    }
 
     toggleImage.addEventListener('click', () => {
         isBoxVisible = !isBoxVisible;
